@@ -4,11 +4,14 @@ from firebase_admin import firestore
 
 import json
 
-cred = credentials.Certificate('/Users/mattlucia/Documents/CS3050/cs3050-warmup-project-d7296-firebase-adminsdk-fbsvc-37c75d0990.json')
+# Login to Google Firestore
+cred = credentials.Certificate('cs3050-warmup-project-d7296-firebase-adminsdk-fbsvc-37c75d0990.json')
 firebase_admin.initialize_app(cred)
 
+# Connect to db
 db = firestore.client()
 
+# Read in data from JSON to db
 with open('us_states_data.json', 'r') as f:
     data = json.load(f)
 
