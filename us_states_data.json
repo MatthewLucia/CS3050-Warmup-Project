@@ -6,7 +6,8 @@
         "governor": "Kay Ivey",
         "population": 5157699,
         "num_counties": 67,
-        "national_bird": "Yellowhammer"
+        "national_bird": "Yellowhammer",
+        "region": "South"
     },
     {
         "uuid": "fb9f5699-93af-4c1c-8daa-ad4ca16dd383",
@@ -15,7 +16,8 @@
         "governor": "Mike Dunleavy",
         "population": 740133,
         "num_counties": 20,
-        "national_bird": "Willow Ptarmigan"
+        "national_bird": "Willow Ptarmigan",
+        "region": "West"
     },
     {
         "uuid": "2b24f0c9-25ea-4663-a848-a3f9aac73fed",
@@ -24,7 +26,8 @@
         "governor": "Katie Hobbs",
         "population": 7582384,
         "num_counties": 15,
-        "national_bird": "Cactus Wren"
+        "national_bird": "Cactus Wren",
+        "region": "West"
     },
     {
         "uuid": "9909d536-2ade-4f50-ab70-64418a43a903",
@@ -32,7 +35,8 @@
         "capital": "Little Rock",
         "governor": "Sarah Huckabee Sanders",
         "population": 3088354,
-        "num_counties": 75
+        "num_counties": 75,
+        "region": "South"
     },
     {
         "uuid": "56c4f0c6-3154-45cf-98c0-602cb51e6421",
@@ -41,7 +45,8 @@
         "governor": "Gavin Newsom",
         "population": 39431263,
         "num_counties": 58,
-        "national_bird": "California Quail"
+        "national_bird": "California Quail",
+        "region": "West"
     },
     {
         "uuid": "8cccaf40-2f5d-4043-b8e7-9a9101aaa1d0",
@@ -49,7 +54,8 @@
         "capital": "Denver",
         "governor": "Jared Polis",
         "population": 5957493,
-        "num_counties": 64
+        "num_counties": 64,
+        "region": "West"
     },
     {
         "uuid": "44ace7f2-b9d8-4189-801a-4fc46c311d80",
@@ -57,7 +63,8 @@
         "capital": "Hartford",
         "governor": "Ned Lamont",
         "population": 3675069,
-        "num_counties": 8
+        "num_counties": 8,
+        "region": "Northeast"
     },
     {
         "uuid": "66c8326c-73b6-4500-8c06-b6460302ebb6",
@@ -66,7 +73,8 @@
         "governor": "Bethany Hall-Long",
         "population": 1051917,
         "num_counties": 3,
-        "national_bird": "Blue Hen Chicken"
+        "national_bird": "Blue Hen Chicken",
+        "region": "South"
     },
     {
         "uuid": "e0a449a6-11f6-4835-bd41-c9aebf36f5bc",
@@ -74,7 +82,8 @@
         "capital": "Tallahassee",
         "governor": "Ron DeSantis",
         "population": 23372215,
-        "num_counties": 67
+        "num_counties": 67,
+        "region": "South"
     },
     {
         "uuid": "e735437c-e35c-4671-8a39-da5faaeda802",
@@ -83,7 +92,8 @@
         "governor": "Brian Kemp",
         "population": 11180878,
         "num_counties": 159,
-        "national_bird": "Brown Thrasher"
+        "national_bird": "Brown Thrasher",
+        "region": "South"
     },
     {
         "uuid": "a3ec33bb-0aed-4fbf-9cab-80e975a90c06",
@@ -91,7 +101,8 @@
         "capital": "Honolulu",
         "governor": "Josh Green",
         "population": 1446146,
-        "num_counties": 5
+        "num_counties": 5,
+        "region": "West"
     },
     {
         "uuid": "210247fd-5a13-42cd-ae8e-0d5866a303b2",
@@ -99,7 +110,8 @@
         "capital": "Boise",
         "governor": "Brad Little",
         "population": 2001619,
-        "num_counties": 44
+        "num_counties": 44,
+        "region": "West"
     },
     {
         "uuid": "bf41b396-5d6d-44c8-a925-d140838ce508",
@@ -108,7 +120,8 @@
         "governor": "J.B. Pritzker",
         "population": 12710158,
         "num_counties": 102,
-        "popular_food": "Deep Dish Pizza"
+        "popular_food": "Deep Dish Pizza",
+        "region": "Midwest"
     },
     {
         "uuid": "59957fe7-c71a-4651-a2af-bc9012a8473a",
@@ -116,7 +129,8 @@
         "capital": "Indianapolis",
         "governor": "Mike Braun",
         "population": 6924275,
-        "num_counties": 92
+        "num_counties": 92,
+        "region": "Midwest"
     },
     {
         "uuid": "7ffcde89-e788-4118-8824-4e9cb70a570b",
@@ -124,7 +138,8 @@
         "capital": "Des Moines",
         "governor": "Kim Reynolds",
         "population": 3241488,
-        "num_counties": 99
+        "num_counties": 99,
+        "region": "Midwest"
     },
     {
         "uuid": "21bab50c-473f-4ac9-bb24-c8f721303167",
@@ -133,7 +148,8 @@
         "governor": "Laura Kelly",
         "population": 2970606,
         "num_counties": 105,
-        "national_bird": "Western Meadowlark"
+        "national_bird": "Western Meadowlark",
+        "region": "Midwest"
     },
     {
         "uuid": "fd52e1b9-1650-48b2-a84b-b206013ed517",
@@ -142,7 +158,8 @@
         "governor": "Andy Beshear",
         "population": 4588372,
         "num_counties": 120,
-        "national_bird": "Northern Cardinal"
+        "national_bird": "Northern Cardinal",
+        "region": "South"
     },
     {
         "uuid": "efd93a8a-44ce-45de-945b-f8e44e626f3a",
@@ -150,7 +167,8 @@
         "capital": "Baton Rouge",
         "governor": "Jeff Landry",
         "population": 4597740,
-        "num_counties": 64
+        "num_counties": 64,
+        "region": "South"
     },
     {
         "uuid": "6db238ca-9998-4cd6-9c88-297207d21493",
@@ -158,7 +176,8 @@
         "capital": "Augusta",
         "governor": "Janet Mills",
         "population": 1405012,
-        "num_counties": 16
+        "num_counties": 16,
+        "region": "Northeast"
     },
     {
         "uuid": "368d6929-0cf1-496b-8e6e-88ccab0855e2",
@@ -167,7 +186,8 @@
         "governor": "Wes Moore",
         "population": 6263220,
         "num_counties": 24,
-        "popular_food": "Steamed Crabs"
+        "popular_food": "Steamed Crabs",
+        "region": "South"
     },
     {
         "uuid": "48d297e8-1a12-4927-80cd-2c220f39daa6",
@@ -177,7 +197,8 @@
         "population": 7136171,
         "num_counties": 14,
         "popular_food": "Clam Chowder",
-        "national_bird": "Black-capped Chickadee"
+        "national_bird": "Black-capped Chickadee",
+        "region": "Northeast"
     },
     {
         "uuid": "4f9e5e87-680f-4e26-afef-0a3700eb5b47",
@@ -185,7 +206,8 @@
         "capital": "Lansing",
         "governor": "Gretchen Whitmer",
         "population": 10140459,
-        "num_counties": 83
+        "num_counties": 83,
+        "region": "Midwest"
     },
     {
         "uuid": "478b7f6f-b8d4-415c-8b13-8c0f0b9271c8",
@@ -193,7 +215,8 @@
         "capital": "St. Paul",
         "governor": "Tim Walz",
         "population": 5793151,
-        "num_counties": 87
+        "num_counties": 87,
+        "region": "Midwest"
     },
     {
         "uuid": "d600d980-c8a8-42fb-b206-b653aa47a332",
@@ -202,7 +225,8 @@
         "governor": "Tate Reeves",
         "population": 2943045,
         "num_counties": 82,
-        "national_bird": "Northern Mockingbird"
+        "national_bird": "Northern Mockingbird",
+        "region": "South"
     },
     {
         "uuid": "fbdf3e21-b326-496e-a3d2-651662bb20b5",
@@ -210,7 +234,8 @@
         "capital": "Jefferson City",
         "governor": "Mike Kehoe",
         "population": 6245466,
-        "num_counties": 115
+        "num_counties": 115,
+        "region": "South"
     },
     {
         "uuid": "c145f1b2-02c8-442c-b41b-24e29c368061",
@@ -218,7 +243,8 @@
         "capital": "Helena",
         "governor": "Greg Gianforte",
         "population": 1137233,
-        "num_counties": 56
+        "num_counties": 56,
+        "region": "West"
     },
     {
         "uuid": "73efb218-34cf-4fdd-8032-235b7a972015",
@@ -226,7 +252,8 @@
         "capital": "Lincoln",
         "governor": "Jim Pillen",
         "population": 2005465,
-        "num_counties": 93
+        "num_counties": 93,
+        "region": "Midwest"
     },
     {
         "uuid": "496028c2-8e58-43fa-9895-df1e2892b514",
@@ -235,7 +262,8 @@
         "governor": "Joe Lombardo",
         "population": 3267467,
         "num_counties": 17,
-        "national_bird": "Mountain Bluebird"
+        "national_bird": "Mountain Bluebird",
+        "region": "West"
     },
     {
         "uuid": "8c955502-a2a5-4335-9db9-dffdd1257a92",
@@ -243,7 +271,8 @@
         "capital": "Concord",
         "governor": "Kelly Ayotte",
         "population": 1409032,
-        "num_counties": 10
+        "num_counties": 10,
+        "region": "Northeast"
     },
     {
         "uuid": "03821332-b066-48e4-b9b7-3996cea3111b",
@@ -251,7 +280,8 @@
         "capital": "Trenton",
         "governor": "Phil Murphy",
         "population": 9500851,
-        "num_counties": 21
+        "num_counties": 21,
+        "region": "Northeast"
     },
     {
         "uuid": "0e4070ad-df8f-4a92-8c78-ef4656367002",
@@ -259,7 +289,8 @@
         "capital": "Santa Fe",
         "governor": "Michelle Lujan Grisham",
         "population": 2130256,
-        "num_counties": 33
+        "num_counties": 33,
+        "region": "West"
     },
     {
         "uuid": "b45bdcbc-b1d4-4ff3-a82c-eeffc1e0eca8",
@@ -267,7 +298,8 @@
         "capital": "Albany",
         "governor": "Kathy Hochul",
         "population": 19867248,
-        "num_counties": 62
+        "num_counties": 62,
+        "region": "Northeast"
     },
     {
         "uuid": "301e3215-5773-49a0-b7a0-def2a2e05366",
@@ -275,7 +307,8 @@
         "capital": "Raleigh",
         "governor": "Josh Stein",
         "population": 11046024,
-        "num_counties": 100
+        "num_counties": 100,
+        "region": "South"
     },
     {
         "uuid": "ac7560ac-20dc-4e01-86a4-3b90964a694b",
@@ -283,7 +316,8 @@
         "capital": "Bismarck",
         "governor": "Kelly Armstrong",
         "population": 796568,
-        "num_counties": 53
+        "num_counties": 53,
+        "region": "Midwest"
     },
     {
         "uuid": "ae41b624-cbdc-4856-8800-4dd812c6dd51",
@@ -293,7 +327,8 @@
         "population": 11883304,
         "num_counties": 88,
         "popular_food": "Buckeye Candies",
-        "national_bird": "Northern Cardinal"
+        "national_bird": "Northern Cardinal",
+        "region": "Midwest"
     },
     {
         "uuid": "9934f542-7915-4d4b-9cf9-3cf0d8c4a3ba",
@@ -301,7 +336,8 @@
         "capital": "Oklahoma City",
         "governor": "Kevin Stitt",
         "population": 4095393,
-        "num_counties": 77
+        "num_counties": 77,
+        "region": "South"
     },
     {
         "uuid": "448df561-fdad-4833-b0d0-c2f9f6fcbad3",
@@ -309,7 +345,8 @@
         "capital": "Salem",
         "governor": "Tina Kotek",
         "population": 4272371,
-        "num_counties": 36
+        "num_counties": 36,
+        "region": "West"
     },
     {
         "uuid": "52af5aac-0236-45b4-a776-05c523d16aeb",
@@ -318,7 +355,8 @@
         "governor": "Josh Shapiro",
         "population": 13078751,
         "num_counties": 67,
-        "popular_food": "Cheesesteaks"
+        "popular_food": "Cheesesteaks",
+        "region": "Northeast"
     },
     {
         "uuid": "fd3febf6-1892-40d1-a68a-7664bf1f26fe",
@@ -327,7 +365,8 @@
         "governor": "Dan McKee",
         "population": 1112308,
         "num_counties": 5,
-        "national_bird": "Rhode Island Red"
+        "national_bird": "Rhode Island Red",
+        "region": "Northeast"
     },
     {
         "uuid": "e71b919d-619e-49ab-97e0-3b4ac543ed47",
@@ -335,7 +374,8 @@
         "capital": "Columbia",
         "governor": "Henry McMaster",
         "population": 5478831,
-        "num_counties": 46
+        "num_counties": 46,
+        "region": "South"
     },
     {
         "uuid": "851f1ce1-c3d3-4857-b843-35e1fdcea0d2",
@@ -343,7 +383,8 @@
         "capital": "Pierre",
         "governor": "Kristi Noem",
         "population": 924669,
-        "num_counties": 66
+        "num_counties": 66,
+        "region": "Midwest"
     },
     {
         "uuid": "4e7447f6-ddd1-46a2-b148-551e954b0ef7",
@@ -351,7 +392,8 @@
         "capital": "Nashville",
         "governor": "Bill Lee",
         "population": 7227750,
-        "num_counties": 95
+        "num_counties": 95,
+        "region": "South"
     },
     {
         "uuid": "7b2cb27d-8cba-4979-b60c-80b0b74622aa",
@@ -359,7 +401,8 @@
         "capital": "Austin",
         "governor": "Greg Abbott",
         "population": 31290831,
-        "num_counties": 254
+        "num_counties": 254,
+        "region": "South"
     },
     {
         "uuid": "90527df9-1a04-4236-b0ba-7f3dea8cd14d",
@@ -367,7 +410,8 @@
         "capital": "Salt Lake City",
         "governor": "Spencer Cox",
         "population": 3503613,
-        "num_counties": 29
+        "num_counties": 29,
+        "region": "West"
     },
     {
         "uuid": "a894da06-a6da-4a2e-a4a8-568f3c84537b",
@@ -376,7 +420,8 @@
         "governor": "Phil Scott",
         "population": 648493,
         "num_counties": 14,
-        "national_bird": "Hermit Thrush"
+        "national_bird": "Hermit Thrush",
+        "region": "Northeast"
     },
     {
         "uuid": "c711e120-7e2a-4010-b192-4ddcf5a0f710",
@@ -384,7 +429,8 @@
         "capital": "Richmond",
         "governor": "Glenn Youngkin",
         "population": 8811195,
-        "num_counties": 133
+        "num_counties": 133,
+        "region": "South"
     },
     {
         "uuid": "79a29a1a-cee9-49c1-a507-6e8680b9d193",
@@ -392,7 +438,8 @@
         "capital": "Olympia",
         "governor": "Bob Ferguson",
         "population": 7958180,
-        "num_counties": 39
+        "num_counties": 39,
+        "region": "West"
     },
     {
         "uuid": "02806d06-7f56-4348-bcdc-46b176739772",
@@ -400,7 +447,8 @@
         "capital": "Charleston",
         "governor": "Patrick Morrisey",
         "population": 1769979,
-        "num_counties": 55
+        "num_counties": 55,
+        "region": "South"
     },
     {
         "uuid": "06f496d2-9a18-4771-9bfa-cc8bbb08f946",
@@ -408,7 +456,8 @@
         "capital": "Madison",
         "governor": "Tony Evers",
         "population": 5960975,
-        "num_counties": 72
+        "num_counties": 72,
+        "region": "Midwest"
     },
     {
         "uuid": "a323ee45-5764-4a74-a56a-a0055c4e48a2",
@@ -417,6 +466,7 @@
         "governor": "Mark Gordon",
         "population": 587618,
         "num_counties": 23,
-        "national_bird": "Western Meadowlark"
+        "national_bird": "Western Meadowlark",
+        "region": "West"
     }
 ]
