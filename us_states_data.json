@@ -1,0 +1,452 @@
+[
+    {
+        "uuid": "5885f9bc-454e-483a-8826-dfeaf77c8a5a",
+        "state": "Alabama",
+        "capital": "Montgomery",
+        "governor": "Kay Ivey",
+        "population": 5157699,
+        "red_or_blue": "red",
+        "num_counties": 67
+    },
+    {
+        "uuid": "fb9f5699-93af-4c1c-8daa-ad4ca16dd383",
+        "state": "Alaska",
+        "capital": "Juneau",
+        "governor": "Mike Dunleavy",
+        "population": 740133,
+        "red_or_blue": "red",
+        "num_counties": 20
+    },
+    {
+        "uuid": "2b24f0c9-25ea-4663-a848-a3f9aac73fed",
+        "state": "Arizona",
+        "capital": "Phoenix",
+        "governor": "Katie Hobbs",
+        "population": 7582384,
+        "red_or_blue": "red",
+        "num_counties": 15
+    },
+    {
+        "uuid": "9909d536-2ade-4f50-ab70-64418a43a903",
+        "state": "Arkansas",
+        "capital": "Little Rock",
+        "governor": "Sarah Huckabee Sanders",
+        "population": 3088354,
+        "red_or_blue": "red",
+        "num_counties": 75
+    },
+    {
+        "uuid": "56c4f0c6-3154-45cf-98c0-602cb51e6421",
+        "state": "California",
+        "capital": "Sacramento",
+        "governor": "Gavin Newsom",
+        "population": 39431263,
+        "red_or_blue": "blue",
+        "num_counties": 58
+    },
+    {
+        "uuid": "8cccaf40-2f5d-4043-b8e7-9a9101aaa1d0",
+        "state": "Colorado",
+        "capital": "Denver",
+        "governor": "Jared Polis",
+        "population": 5957493,
+        "red_or_blue": "blue",
+        "num_counties": 64
+    },
+    {
+        "uuid": "44ace7f2-b9d8-4189-801a-4fc46c311d80",
+        "state": "Connecticut",
+        "capital": "Hartford",
+        "governor": "Ned Lamont",
+        "population": 3675069,
+        "red_or_blue": "blue",
+        "num_counties": 8
+    },
+    {
+        "uuid": "66c8326c-73b6-4500-8c06-b6460302ebb6",
+        "state": "Delaware",
+        "capital": "Dover",
+        "governor": "Bethany Hall-Long",
+        "population": 1051917,
+        "red_or_blue": "blue",
+        "num_counties": 3
+    },
+    {
+        "uuid": "e0a449a6-11f6-4835-bd41-c9aebf36f5bc",
+        "state": "Florida",
+        "capital": "Tallahassee",
+        "governor": "Ron DeSantis",
+        "population": 23372215,
+        "red_or_blue": "red",
+        "num_counties": 67
+    },
+    {
+        "uuid": "e735437c-e35c-4671-8a39-da5faaeda802",
+        "state": "Georgia",
+        "capital": "Atlanta",
+        "governor": "Brian Kemp",
+        "population": 11180878,
+        "red_or_blue": "red",
+        "num_counties": 159
+    },
+    {
+        "uuid": "a3ec33bb-0aed-4fbf-9cab-80e975a90c06",
+        "state": "Hawaii",
+        "capital": "Honolulu",
+        "governor": "Josh Green",
+        "population": 1446146,
+        "red_or_blue": "blue",
+        "num_counties": 5
+    },
+    {
+        "uuid": "210247fd-5a13-42cd-ae8e-0d5866a303b2",
+        "state": "Idaho",
+        "capital": "Boise",
+        "governor": "Brad Little",
+        "population": 2001619,
+        "red_or_blue": "red",
+        "num_counties": 44
+    },
+    {
+        "uuid": "bf41b396-5d6d-44c8-a925-d140838ce508",
+        "state": "Illinois",
+        "capital": "Springfield",
+        "governor": "J.B. Pritzker",
+        "population": 12710158,
+        "red_or_blue": "blue",
+        "num_counties": 102
+    },
+    {
+        "uuid": "59957fe7-c71a-4651-a2af-bc9012a8473a",
+        "state": "Indiana",
+        "capital": "Indianapolis",
+        "governor": "Mike Braun",
+        "population": 6924275,
+        "red_or_blue": "red",
+        "num_counties": 92
+    },
+    {
+        "uuid": "7ffcde89-e788-4118-8824-4e9cb70a570b",
+        "state": "Iowa",
+        "capital": "Des Moines",
+        "governor": "Kim Reynolds",
+        "population": 3241488,
+        "red_or_blue": "red",
+        "num_counties": 99
+    },
+    {
+        "uuid": "21bab50c-473f-4ac9-bb24-c8f721303167",
+        "state": "Kansas",
+        "capital": "Topeka",
+        "governor": "Laura Kelly",
+        "population": 2970606,
+        "red_or_blue": "red",
+        "num_counties": 105
+    },
+    {
+        "uuid": "fd52e1b9-1650-48b2-a84b-b206013ed517",
+        "state": "Kentucky",
+        "capital": "Frankfort",
+        "governor": "Andy Beshear",
+        "population": 4588372,
+        "red_or_blue": "red",
+        "num_counties": 120
+    },
+    {
+        "uuid": "efd93a8a-44ce-45de-945b-f8e44e626f3a",
+        "state": "Louisiana",
+        "capital": "Baton Rouge",
+        "governor": "Jeff Landry",
+        "population": 4597740,
+        "red_or_blue": "red",
+        "num_counties": 64
+    },
+    {
+        "uuid": "6db238ca-9998-4cd6-9c88-297207d21493",
+        "state": "Maine",
+        "capital": "Augusta",
+        "governor": "Janet Mills",
+        "population": 1405012,
+        "red_or_blue": "blue",
+        "num_counties": 16
+    },
+    {
+        "uuid": "368d6929-0cf1-496b-8e6e-88ccab0855e2",
+        "state": "Maryland",
+        "capital": "Annapolis",
+        "governor": "Wes Moore",
+        "population": 6263220,
+        "red_or_blue": "blue",
+        "num_counties": 24
+    },
+    {
+        "uuid": "48d297e8-1a12-4927-80cd-2c220f39daa6",
+        "state": "Massachusetts",
+        "capital": "Boston",
+        "governor": "Maura Healey",
+        "population": 7136171,
+        "red_or_blue": "blue",
+        "num_counties": 14
+    },
+    {
+        "uuid": "4f9e5e87-680f-4e26-afef-0a3700eb5b47",
+        "state": "Michigan",
+        "capital": "Lansing",
+        "governor": "Gretchen Whitmer",
+        "population": 10140459,
+        "red_or_blue": "red",
+        "num_counties": 83
+    },
+    {
+        "uuid": "478b7f6f-b8d4-415c-8b13-8c0f0b9271c8",
+        "state": "Minnesota",
+        "capital": "St. Paul",
+        "governor": "Tim Walz",
+        "population": 5793151,
+        "red_or_blue": "blue",
+        "num_counties": 87
+    },
+    {
+        "uuid": "d600d980-c8a8-42fb-b206-b653aa47a332",
+        "state": "Mississippi",
+        "capital": "Jackson",
+        "governor": "Tate Reeves",
+        "population": 2943045,
+        "red_or_blue": "red",
+        "num_counties": 82
+    },
+    {
+        "uuid": "fbdf3e21-b326-496e-a3d2-651662bb20b5",
+        "state": "Missouri",
+        "capital": "Jefferson City",
+        "governor": "Mike Kehoe",
+        "population": 6245466,
+        "red_or_blue": "red",
+        "num_counties": 115
+    },
+    {
+        "uuid": "c145f1b2-02c8-442c-b41b-24e29c368061",
+        "state": "Montana",
+        "capital": "Helena",
+        "governor": "Greg Gianforte",
+        "population": 1137233,
+        "red_or_blue": "red",
+        "num_counties": 56
+    },
+    {
+        "uuid": "73efb218-34cf-4fdd-8032-235b7a972015",
+        "state": "Nebraska",
+        "capital": "Lincoln",
+        "governor": "Jim Pillen",
+        "population": 2005465,
+        "red_or_blue": "red",
+        "num_counties": 93
+    },
+    {
+        "uuid": "496028c2-8e58-43fa-9895-df1e2892b514",
+        "state": "Nevada",
+        "capital": "Carson City",
+        "governor": "Joe Lombardo",
+        "population": 3267467,
+        "red_or_blue": "red",
+        "num_counties": 17
+    },
+    {
+        "uuid": "8c955502-a2a5-4335-9db9-dffdd1257a92",
+        "state": "New Hampshire",
+        "capital": "Concord",
+        "governor": "Kelly Ayotte",
+        "population": 1409032,
+        "red_or_blue": "blue",
+        "num_counties": 10
+    },
+    {
+        "uuid": "03821332-b066-48e4-b9b7-3996cea3111b",
+        "state": "New Jersey",
+        "capital": "Trenton",
+        "governor": "Phil Murphy",
+        "population": 9500851,
+        "red_or_blue": "blue",
+        "num_counties": 21
+    },
+    {
+        "uuid": "0e4070ad-df8f-4a92-8c78-ef4656367002",
+        "state": "New Mexico",
+        "capital": "Santa Fe",
+        "governor": "Michelle Lujan Grisham",
+        "population": 2130256,
+        "red_or_blue": "blue",
+        "num_counties": 33
+    },
+    {
+        "uuid": "b45bdcbc-b1d4-4ff3-a82c-eeffc1e0eca8",
+        "state": "New York",
+        "capital": "Albany",
+        "governor": "Kathy Hochul",
+        "population": 19867248,
+        "red_or_blue": "blue",
+        "num_counties": 62
+    },
+    {
+        "uuid": "301e3215-5773-49a0-b7a0-def2a2e05366",
+        "state": "North Carolina",
+        "capital": "Raleigh",
+        "governor": "Josh Stein",
+        "population": 11046024,
+        "red_or_blue": "red",
+        "num_counties": 100
+    },
+    {
+        "uuid": "ac7560ac-20dc-4e01-86a4-3b90964a694b",
+        "state": "North Dakota",
+        "capital": "Bismarck",
+        "governor": "Kelly Armstrong",
+        "population": 796568,
+        "red_or_blue": "red",
+        "num_counties": 53
+    },
+    {
+        "uuid": "ae41b624-cbdc-4856-8800-4dd812c6dd51",
+        "state": "Ohio",
+        "capital": "Columbus",
+        "governor": "Mike DeWine",
+        "population": 11883304,
+        "red_or_blue": "red",
+        "num_counties": 88
+    },
+    {
+        "uuid": "9934f542-7915-4d4b-9cf9-3cf0d8c4a3ba",
+        "state": "Oklahoma",
+        "capital": "Oklahoma City",
+        "governor": "Kevin Stitt",
+        "population": 4095393,
+        "red_or_blue": "red",
+        "num_counties": 77
+    },
+    {
+        "uuid": "448df561-fdad-4833-b0d0-c2f9f6fcbad3",
+        "state": "Oregon",
+        "capital": "Salem",
+        "governor": "Tina Kotek",
+        "population": 4272371,
+        "red_or_blue": "blue",
+        "num_counties": 36
+    },
+    {
+        "uuid": "52af5aac-0236-45b4-a776-05c523d16aeb",
+        "state": "Pennsylvania",
+        "capital": "Harrisburg",
+        "governor": "Josh Shapiro",
+        "population": 13078751,
+        "red_or_blue": "red",
+        "num_counties": 67
+    },
+    {
+        "uuid": "fd3febf6-1892-40d1-a68a-7664bf1f26fe",
+        "state": "Rhode Island",
+        "capital": "Providence",
+        "governor": "Dan McKee",
+        "population": 1112308,
+        "red_or_blue": "blue",
+        "num_counties": 5
+    },
+    {
+        "uuid": "e71b919d-619e-49ab-97e0-3b4ac543ed47",
+        "state": "South Carolina",
+        "capital": "Columbia",
+        "governor": "Henry McMaster",
+        "population": 5478831,
+        "red_or_blue": "red",
+        "num_counties": 46
+    },
+    {
+        "uuid": "851f1ce1-c3d3-4857-b843-35e1fdcea0d2",
+        "state": "South Dakota",
+        "capital": "Pierre",
+        "governor": "Kristi Noem",
+        "population": 924669,
+        "red_or_blue": "red",
+        "num_counties": 66
+    },
+    {
+        "uuid": "4e7447f6-ddd1-46a2-b148-551e954b0ef7",
+        "state": "Tennessee",
+        "capital": "Nashville",
+        "governor": "Bill Lee",
+        "population": 7227750,
+        "red_or_blue": "red",
+        "num_counties": 95
+    },
+    {
+        "uuid": "7b2cb27d-8cba-4979-b60c-80b0b74622aa",
+        "state": "Texas",
+        "capital": "Austin",
+        "governor": "Greg Abbott",
+        "population": 31290831,
+        "red_or_blue": "red",
+        "num_counties": 254
+    },
+    {
+        "uuid": "90527df9-1a04-4236-b0ba-7f3dea8cd14d",
+        "state": "Utah",
+        "capital": "Salt Lake City",
+        "governor": "Spencer Cox",
+        "population": 3503613,
+        "red_or_blue": "red",
+        "num_counties": 29
+    },
+    {
+        "uuid": "a894da06-a6da-4a2e-a4a8-568f3c84537b",
+        "state": "Vermont",
+        "capital": "Montpelier",
+        "governor": "Phil Scott",
+        "population": 648493,
+        "red_or_blue": "blue",
+        "num_counties": 14
+    },
+    {
+        "uuid": "c711e120-7e2a-4010-b192-4ddcf5a0f710",
+        "state": "Virginia",
+        "capital": "Richmond",
+        "governor": "Glenn Youngkin",
+        "population": 8811195,
+        "red_or_blue": "blue",
+        "num_counties": 133
+    },
+    {
+        "uuid": "79a29a1a-cee9-49c1-a507-6e8680b9d193",
+        "state": "Washington",
+        "capital": "Olympia",
+        "governor": "Bob Ferguson",
+        "population": 7958180,
+        "red_or_blue": "blue",
+        "num_counties": 39
+    },
+    {
+        "uuid": "02806d06-7f56-4348-bcdc-46b176739772",
+        "state": "West Virginia",
+        "capital": "Charleston",
+        "governor": "Patrick Morrisey",
+        "population": 1769979,
+        "red_or_blue": "red",
+        "num_counties": 55
+    },
+    {
+        "uuid": "06f496d2-9a18-4771-9bfa-cc8bbb08f946",
+        "state": "Wisconsin",
+        "capital": "Madison",
+        "governor": "Tony Evers",
+        "population": 5960975,
+        "red_or_blue": "red",
+        "num_counties": 72
+    },
+    {
+        "uuid": "a323ee45-5764-4a74-a56a-a0055c4e48a2",
+        "state": "Wyoming",
+        "capital": "Cheyenne",
+        "governor": "Mark Gordon",
+        "population": 587618,
+        "red_or_blue": "red",
+        "num_counties": 23
+    }
+]
