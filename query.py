@@ -15,6 +15,7 @@ import sys
 import firebase_admin
 from firebase_admin import credentials, firestore
 
+
 class Query:
     REGION_QUERY = 1,
     INFO_QUERY = 2,
@@ -24,6 +25,7 @@ class Query:
     GOVERNOR_QUERY = 6,
     FOOD_QUERY = 7,
     BIRD_QUERY = 8
+
 
 class StateQueryEngine:
     def display_welcome_screen(self):
@@ -39,7 +41,7 @@ class StateQueryEngine:
         print("\t7. National Bird")
         print("\t8. Help")
 
-    def program_exit(self):  #REVISIT LATER --> we should show this after user types "exit"
+    def program_exit(self):  # REVISIT LATER --> we should show this after user types "exit"
         print("\nAre you sure you want to exit? (y/n)")
         quit_choice = input(">>> ")
 
@@ -54,13 +56,15 @@ class StateQueryEngine:
            # reprompt
             pass
 
-    def parse_input(self, validated_input):
+    def parse_input(self, user_query):
         """
         Validates and parses the user's input into a list of tokens
 
         params: query - the user's query
         returns: The parsed user's query OR error message if query is entered incorrectly
         """
+        # TODO: implement help & exit queries
+
         # Define possible tokens
         region = pp.Literal("region")
         info = pp.Literal("info_of")
@@ -70,17 +74,22 @@ class StateQueryEngine:
         counties = pp.Literal("counties")
         food = pp.Literal("food")
         bird = pp.Literal("bird")
+
         exit = pp.Literal("exit")
         help = pp.Literal("help")
-        keywords = [region, info, capital, governor, population, counties, food, bird, exit, help]
+        keywords = [region, info, capital, governor,
+                    population, counties, food, bird, exit, help]
 
         numerical_op = pp.oneOf("!= == >= <= > <")
         categorical_op = pp.oneOf("!= ==")
 
-        string = pp.Word(pp.alphas)
+        string = pp.Word(pp.alphas) | pp.QuotedString(
+            '"') | pp.QuotedString("'")
         integer = pp.Word(pp.nums)
 
+        # Define well formatted queries
         region_query = region + categorical_op + string
+        info_query = info + categorical_op + string
         population_query = population + numerical_op + integer
         county_query = counties + numerical_op + integer
         capital_query = capital + categorical_op + string
@@ -88,8 +97,33 @@ class StateQueryEngine:
         food_query = food + numerical_op + string
         bird_query = bird + numerical_op + string
 
-        single_query = region_query | population_query | county_query | capital_query | governor_query | food_query | bird_query
-        compound_query_and = pp.delimitedList(single_query, delim=["&&", "||"])
+        # Build query parser to handle single and compound queries
+        single_query = (
+            region_query
+            | info_query
+            | population_query
+            | county_query
+            | capital_query
+            | governor_query
+            | food_query
+            | bird_query
+            | help
+            | exit
+        )
+        query_parser = pp.delimitedList(single_query, delim="&&")
+
+        try:
+            # Format list into nested list of single queries for compound quereies
+            tokens_list = query_parser.parse_string(user_query, parse_all=True)
+            result = []
+            while tokens_list:
+                query = tokens_list[:3]
+                result.append(query)
+                tokens_list = tokens_list[3:]
+            return result
+
+        except pp.ParseException as e:
+            return self.handle_error(query)
 
         # words = pp.oneOf(keywords)
         # question = words + commands + (integer | words) + pp.Optional(commands + words + commands + (integer | words))
@@ -103,6 +137,13 @@ class StateQueryEngine:
         #         print(testing)
         #     except pp.ParseException as e:
         #         print("Error: ", e)
+
+    def handle_error(self, query):
+        """
+        Displays relevant error message to the user based on the issue with their query,
+        and provides a suggestion on how to use it correctly.
+        """
+        # TODO: implement
 
     def query_database(self, parsed_query):
         """
@@ -145,6 +186,7 @@ class StateQueryEngine:
             validate_and_parse = self.parse_input(self)
 
         return
+
 
 if __name__ == "__main__":
     engine = StateQueryEngine()
