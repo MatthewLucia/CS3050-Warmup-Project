@@ -6,7 +6,7 @@
         "governor": "Kay Ivey",
         "population": 5157699,
         "num_counties": 67,
-        "national_bird": "Yellowhammer",
+        "state_bird": "Yellowhammer",
         "region": "South"
     },
     {
@@ -16,7 +16,7 @@
         "governor": "Mike Dunleavy",
         "population": 740133,
         "num_counties": 20,
-        "national_bird": "Willow Ptarmigan",
+        "state_bird": "Willow Ptarmigan",
         "region": "West"
     },
     {
@@ -26,7 +26,7 @@
         "governor": "Katie Hobbs",
         "population": 7582384,
         "num_counties": 15,
-        "national_bird": "Cactus Wren",
+        "state_bird": "Cactus Wren",
         "region": "West"
     },
     {
@@ -45,7 +45,7 @@
         "governor": "Gavin Newsom",
         "population": 39431263,
         "num_counties": 58,
-        "national_bird": "California Quail",
+        "state_bird": "California Quail",
         "region": "West"
     },
     {
@@ -73,7 +73,7 @@
         "governor": "Bethany Hall-Long",
         "population": 1051917,
         "num_counties": 3,
-        "national_bird": "Blue Hen Chicken",
+        "state_bird": "Blue Hen Chicken",
         "region": "South"
     },
     {
@@ -92,7 +92,7 @@
         "governor": "Brian Kemp",
         "population": 11180878,
         "num_counties": 159,
-        "national_bird": "Brown Thrasher",
+        "state_bird": "Brown Thrasher",
         "region": "South"
     },
     {
@@ -148,7 +148,7 @@
         "governor": "Laura Kelly",
         "population": 2970606,
         "num_counties": 105,
-        "national_bird": "Western Meadowlark",
+        "state_bird": "Western Meadowlark",
         "region": "Midwest"
     },
     {
@@ -158,7 +158,7 @@
         "governor": "Andy Beshear",
         "population": 4588372,
         "num_counties": 120,
-        "national_bird": "Northern Cardinal",
+        "state_bird": "Northern Cardinal",
         "region": "South"
     },
     {
@@ -197,7 +197,7 @@
         "population": 7136171,
         "num_counties": 14,
         "popular_food": "Clam Chowder",
-        "national_bird": "Black-capped Chickadee",
+        "state_bird": "Black-capped Chickadee",
         "region": "Northeast"
     },
     {
@@ -225,7 +225,7 @@
         "governor": "Tate Reeves",
         "population": 2943045,
         "num_counties": 82,
-        "national_bird": "Northern Mockingbird",
+        "state_bird": "Northern Mockingbird",
         "region": "South"
     },
     {
@@ -262,7 +262,7 @@
         "governor": "Joe Lombardo",
         "population": 3267467,
         "num_counties": 17,
-        "national_bird": "Mountain Bluebird",
+        "state_bird": "Mountain Bluebird",
         "region": "West"
     },
     {
@@ -327,7 +327,7 @@
         "population": 11883304,
         "num_counties": 88,
         "popular_food": "Buckeye Candies",
-        "national_bird": "Northern Cardinal",
+        "state_bird": "Northern Cardinal",
         "region": "Midwest"
     },
     {
@@ -365,7 +365,7 @@
         "governor": "Dan McKee",
         "population": 1112308,
         "num_counties": 5,
-        "national_bird": "Rhode Island Red",
+        "state_bird": "Rhode Island Red",
         "region": "Northeast"
     },
     {
@@ -420,7 +420,7 @@
         "governor": "Phil Scott",
         "population": 648493,
         "num_counties": 14,
-        "national_bird": "Hermit Thrush",
+        "state_bird": "Hermit Thrush",
         "region": "Northeast"
     },
     {
@@ -466,7 +466,7 @@
         "governor": "Mark Gordon",
         "population": 587618,
         "num_counties": 23,
-        "national_bird": "Western Meadowlark",
+        "state_bird": "Western Meadowlark",
         "region": "West"
     }
 ]
