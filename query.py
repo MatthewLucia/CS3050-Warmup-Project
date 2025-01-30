@@ -1,14 +1,3 @@
-"""
-#TODO
-Validation function (reuse one from past assignments (?)
-Def process_input(string input) -> processed input
-Def input_validation(processed_input) -> True/False and error message if false
-Def parse_input(validated input) -> parsed language (like the logic operators) / instructions
-Def query_database(instructions) -> answer to specific keyword value, makes calls to firebase
-Def final_answer(value_from_keyword) -> final answer
-"""
-
-from sre_parse import State
 import pyparsing as pp
 from prettytable import PrettyTable
 import json
@@ -20,9 +9,9 @@ from google.cloud.firestore_v1 import FieldFilter
 
 class StateQueryEngine:
     def display_welcome_screen(self):
-        border = "\n" + "*" * 20 + "\n"
-        print(border + "Welcome" + border)
-        print("These are the things that you can find: \n")
+        border = "\n" + "*" * 48 + "\n"
+        print(border + "\tWelcome to the State Query Engine" + border)
+        print("You can filter your search by the following: \n")
         print("\t1. Capital")
         print("\t2. Population")
         print("\t3. Region")
@@ -30,9 +19,9 @@ class StateQueryEngine:
         print("\t5. Number of Counties")
         print("\t6. Popular dish")
         print("\t7. National Bird")
-        print("\t8. Help")
+        print("\nType 'help' to see how to format a query.")
 
-    def program_exit(self):  #REVISIT LATER --> we should show this after user types "exit"
+    def program_exit(self):  # REVISIT LATER --> we should show this after user types "exit"
         print("\nAre you sure you want to exit? (y/n)")
         quit_choice = input(">>> ")
 
@@ -41,34 +30,41 @@ class StateQueryEngine:
             print("Are you sure you want to exit? (y/n)")
             quit_choice = input(">>> ")
         if quit_choice.lower() == "y":
-            print("\nThank you for using the top secret system.")
+            print("\nThank you for using the State Query System.")
             sys.exit()
         else:
-           # reprompt
-            pass
+           self.main()
 
     def display_help_screen(self):
         print("this will be the help screen")
 
-        ## explain the format of 'keyword' 'operator' 'value'
+        # explain the format of 'keyword' 'operator' 'value'
 
-        keyword_table = PrettyTable(["Keywords", "Example Query", "Example Return"])
-        keyword_table.add_row(["region", ">>> region == northeast", "connecticut, maine, etc."])
-        keyword_table.add_row(["info_of", ">>> info_of == vermont", "region, capital, etc."])
-        keyword_table.add_row(["capital", ">>> capital == montpelier", "vermont"])
-        keyword_table.add_row(["governor", ">>> governor == 'phil scott'", "vermont"])
-        keyword_table.add_row(["population", ">>> population > 30000000", "california, texas"])
-        keyword_table.add_row(["num_counties", ">>> num_counties > 150", "texas, georgia"])
-        keyword_table.add_row(["pop_food", ">>> pop_food == 'boiled peanuts'", "alabama"])
+        keyword_table = PrettyTable(
+            ["Keywords", "Example Query", "Example Return"])
+        keyword_table.add_row(
+            ["region", ">>> region == northeast", "connecticut, maine, etc."])
+        keyword_table.add_row(
+            ["info_of", ">>> info_of == vermont", "region, capital, etc."])
+        keyword_table.add_row(
+            ["capital", ">>> capital == montpelier", "vermont"])
+        keyword_table.add_row(
+            ["governor", ">>> governor == 'phil scott'", "vermont"])
+        keyword_table.add_row(
+            ["population", ">>> population > 30000000", "california, texas"])
+        keyword_table.add_row(
+            ["num_counties", ">>> num_counties > 150", "texas, georgia"])
+        keyword_table.add_row(
+            ["pop_food", ">>> pop_food == 'boiled peanuts'", "alabama"])
         keyword_table.add_row(["bird", ">>> bird == hermit thrush", "vermont"])
 
         print(keyword_table)
 
-        logic_table = PrettyTable(["Logic Operators", "Example Query", "Example Return"])
-        logic_table.add_row([])
+        logic_table = PrettyTable(
+            ["Logic Operators", "Example Query", "Example Return"])
+        logic_table.addrow([])
 
         print(logic_table)
-
 
     def validate_and_parse_input(self, user_input):
         """
@@ -80,62 +76,71 @@ class StateQueryEngine:
 
         # Define possible tokens
         region = pp.Literal("region")
-        info = pp.Literal("info_of")
         population = pp.Literal("population")
         capital = pp.Literal("capital")
         governor = pp.Literal("governor")
-        counties = pp.Literal("counties")
-        food = pp.Literal("food")
-        bird = pp.Literal("bird")
-        exit = pp.Literal("exit")
+        num_counties = pp.Literal("num_counties")
+        popular_food = pp.Literal("popular_food")
+        state_bird = pp.Literal("state_bird")
         help = pp.Literal("help")
+        exit = pp.Literal("exit")
 
         numerical_op = pp.oneOf("!= == >= <= > <")
         categorical_op = pp.oneOf("!= ==")
 
-        string = pp.Word(pp.alphas) | pp.QuotedString('"') | pp.QuotedString("'")
+        string = pp.Word(pp.alphas) | pp.QuotedString(
+            '"') | pp.QuotedString("'")
         integer = pp.Word(pp.nums)
 
+        # Define possible queries
         region_query = region + categorical_op + string
-        info_query = info + categorical_op + string
         population_query = population + numerical_op + integer
-        county_query = counties + numerical_op + integer
+        num_counties_query = num_counties + numerical_op + integer
         capital_query = capital + categorical_op + string
         governor_query = governor + numerical_op + string
-        food_query = food + numerical_op + string
-        bird_query = bird + numerical_op + string
+        food_query = popular_food + numerical_op + string
+        bird_query = state_bird + numerical_op + string
 
+        # Build parser
         single_query = (
-                region_query
-                | population_query
-                | county_query
-                | capital_query
-                | governor_query
-                | food_query
-                | bird_query
+            region_query
+            | population_query
+            | num_counties_query
+            | capital_query
+            | governor_query
+            | food_query
+            | bird_query
+            | help
+            | exit
         )
-
-            # region == Northeast && population > 1000000 &&
-            # region == && population > 1000000
-            #sublist = [["region", "==", "&&"]]
-
         query_parser = pp.delimitedList(single_query, delim="&&")
 
-
         try:
-                # Format list into nested list of single queries for compound quereies
+            # Parse query into a list of tokens
             tokens_list = query_parser.parse_string(user_input, parse_all=True)
-                # tokens_ list =  , "population" ...]
+
+            # Display help screen on event user types 'help'
+            if tokens_list[0] == "help":
+                self.display_help_screen()
+            
+            # Prompt exit on event user types 'exit'
+            elif tokens_list[0] == "exit":
+                self.program_exit()
+
+            # Format list into nested list of single queries for compound quereies
             result = []
-            while tokens_list:
-                query = tokens_list[:3] # query = ["region", "==", "Northeast"]
-                result.append(query)
-                tokens_list = tokens_list[3:]
-            #result =  [["region", "==", "Northeast"], ["population", ">", "100000"]]
+            if len(tokens_list) >= 3:
+                while tokens_list:
+                    query = tokens_list[:3]
+                    result.append(query)
+                    tokens_list = tokens_list[3:]
+
+            # Pass nested list of queries to query engine
             self.query_database(result)
 
         except pp.ParseException:
-            print("Error. Could not parse input. Type 'help' for more information.")
+            # Print error message for when user enters invalid input that parser cannot interpret
+            print("Error. Could not parse input.\nType 'help' to see how to properly format a query.")
 
     def query_database(self, parsed_query):
         """
@@ -145,31 +150,51 @@ class StateQueryEngine:
         params: parsed_query - the parsed user's query
         returns:
         """
+        # Log in to the firebase system
         if not firebase_admin._apps:
-            cred = credentials.Certificate('path/to/private-key.json')
+            cred = credentials.Certificate(
+                'cs3050-warmup-7457f-firebase-adminsdk-fbsvc-998bc9893a.json')
             firebase_admin.initialize_app(cred)
 
-        # Connect to Firestore DB
+        # Establish connection to Firestore DB
         db = firestore.client()
 
-        filtered_docs = []
-        for subquery in parsed_query:
-            try:
-                if isinstance(subquery[3], str):
-                    subquery[3].capitalize()
+        # Loop through subqueries in the parsed query, retrieving corresponding documents for each
+        doc_sets = [] # List to store retrieved documents
+        try:
+            for subquery in parsed_query:
+                # Convert numbers to int type
+                if subquery[2].isnumeric():
+                    subquery[2] = int(subquery[2])
+                # Capitalize proper nouns
+                elif isinstance(subquery[2], str):
+                    subquery[2] = subquery[2].title()
+                
+                # Retrieve documents from the database
                 docs = (
                     db.collection("us_states_data")
                     .where(filter=FieldFilter(subquery[0], subquery[1], subquery[2]))
                     .stream()
                 )
-            except Exception:
-                print("Could not retrieve data for your query. Type 'help' for more information.")
 
-            for doc in docs:
-                filtered_docs.append(doc.to_dict())
+                doc_set = {}
+                for doc in docs:
+                    doc_set[doc.id] = doc.to_dict()
+                doc_sets.append(doc_set)
+            
+            # Compute the intersection of the records to satisfy compound quries
+            if doc_sets:
+                common_doc_ids = set(doc_sets[0].keys())
+                for doc_set in doc_sets[1:]:
+                    common_doc_ids.intersection_update(doc_set.keys())
+                filtered_docs = [doc_sets[0][doc_uuid] for doc_uuid in common_doc_ids]
+            else:
+                filtered_docs = []
 
-        return self.final_answer(filtered_docs)
-
+            return self.final_answer(filtered_docs)
+        except Exception:
+            print("Error. Could not retrieve records from the database.\nType 'help' to see how to properly format a query.")
+    
 
     def final_answer(self, records):
         """
@@ -178,7 +203,8 @@ class StateQueryEngine:
         params:
         returns:
         """
-        print("records")
+        # TODO: takes dictionary output and converts it to user-friendly, readable format, then prints that.
+        print(json.dumps(records, indent=4)) # Temporary
 
     def main(self):
 
@@ -188,152 +214,10 @@ class StateQueryEngine:
         while not exit_program:
             user_query = input("> ").strip()
 
-            if user_query.lower() == "exit":
-                self.program_exit()
+            # process_input = user_query.strip().lower()
+            self.validate_and_parse_input(user_query)
 
-            #process_input = user_query.strip().lower()
-            validate_and_parse = self.validate_and_parse_input(user_query)
-
-            print(validate_and_parse)
 
 if __name__ == "__main__":
     engine = StateQueryEngine()
     engine.main()
-
-
-'''
-def validate_input(user_input):
-
-    valid = True
-    # Checking if user's input is valid
-    keywords = ["population", "counties", "region", "info_of", "capital", "governor", "food", "bird", "exit", "help"]
-    operations = ["!=", "==", ">=", "<=", ">", "<"]
-
-    # splitting input into a list
-    split_input = (user_input.strip().lower()).split()
-    print(split_input)
-
-    if split_input[0] == "exit":
-        print("exit ok")
- 
-    elif split_input[0] == "help":
-        print("help ok")
-
-    elif len(split_input) < 3:
-        print("Invalid input")
- 
-        return False
-    
-    i = 0
-    while i < len(split_input):
-        keyword = split_input[i]
-        operator = split_input[i+1]
-        val = split_input[i+2]
-
-        # check if the input contains the allowed keywords and operators
-        if keyword not in keywords and operator not in operations:
-            print("\nInvalid keyword.\n")
-            valid = False
-
-        if keyword == "counties" or keyword == "population":
-            if val.isdigit() == False:
-                print("Invalid")
-                valid = False
-        else:
-            if val.isalpha() == False:
-                print("Invalid")
-                valid = False
-
-        # Add 3 to i --> this is because the compound query structure is
-        # (keyword, operator, value)  operator  (keyword, operator, value)
-       
-       if len(split_input) % 3 == 0 or len(split_input) % 3 == 1:
-        i += 3 
-
-        # If there are more tokens, they should be logical operators
-        if i < len(split_input):
-            if split_input[i] != 'and' and split_input[i] != 'or':
-                return False
-            i += 1  # Move past logical operator
-
-        else:
-            print ("incomplete")
-    if not valid:
-        print ("not valid input")
-    else:
-        print("valid")
-        print(len(split_input) % 3)
-
-validate_input("region == north")
-validate_input("region == north and counties > 3 ") 
-
-'''
-
-# def validate_input(user_input):
-#
-#     valid = True
-#     # Checking if user's input is valid
-#     keywords = ["population", "counties", "region", "info_of", "capital", "governor", "food", "bird", "exit",
-#                 "help"]
-#     operations = ["!=", "==", ">=", "<=", ">", "<"]
-#
-#     # splitting input into a list
-#     split_input = (user_input.strip().lower()).split()
-#
-#     nested_lists_input = []
-#     temp_list = []
-#     i = 0
-#
-#     while i < len(split_input):
-#         if split_input[i] == '&&':
-#             nested_lists_input.append(temp_list)
-#             nested_lists_input.append([split_input[i]])
-#             temp_list = []
-#         else:
-#             temp_list.append(split_input[i])
-#
-#         i += 1
-#
-#     if temp_list:
-#         nested_lists_input.append(temp_list)
-#
-#     # Check to see that query is "complete"
-#     for list in nested_lists_input:
-#         for i in range(len(list)):
-#
-#
-#     print(nested_lists_input) #DELETE LATER
-#
-#     if split_input[0] == "exit":
-#         print("exit ok")
-#
-#     elif split_input[0] == "help":
-#         print("help ok")
-#
-#     elif len(split_input) < 3:
-#         print("Invalid input")
-#
-#         return False
-#
-#     i = 0
-#     while i < len(split_input):
-#         keyword = split_input[i]
-#         operator = split_input[i + 1]
-#         val = split_input[i + 2]
-#
-#         # check if the input contains the allowed keywords and operators
-#         if keyword not in keywords and operator not in operations:
-#             print("\nInvalid keyword.\n")
-#             valid = False
-#
-#         if keyword == "counties" or keyword == "population":
-#             if val.isdigit() == False:
-#                 print("Invalid")
-#                 valid = False
-#         else:
-#             if val.isalpha() == False:
-#                 print("Invalid")
-#                 valid = False
-#
-#         # Add 3 to i --> this is because the compound query structure is
-#         # (keyword, operator, value)  operator  (keyword, operator, value)
