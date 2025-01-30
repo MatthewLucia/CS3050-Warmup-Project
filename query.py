@@ -1,3 +1,5 @@
+
+
 import pyparsing as pp
 from prettytable import PrettyTable
 import json
@@ -55,8 +57,9 @@ class StateQueryEngine:
         keyword_table.add_row(
             ["num_counties", ">>> num_counties > 150", "texas, georgia"])
         keyword_table.add_row(
-            ["pop_food", ">>> pop_food == 'boiled peanuts'", "alabama"])
-        keyword_table.add_row(["bird", ">>> bird == hermit thrush", "vermont"])
+            ["popular_food", ">>> popular_food == 'boiled peanuts'", "alabama"])
+        keyword_table.add_row(
+            ["state_bird", ">>> state_bird == 'hermit thrush'", "vermont"])
 
         print(keyword_table)
 
