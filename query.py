@@ -60,13 +60,26 @@ class StateQueryEngine:
             ["popular_food", ">>> popular_food == 'boiled peanuts'", "alabama"])
         keyword_table.add_row(
             ["state_bird", ">>> state_bird == 'hermit thrush'", "vermont"])
-
+        keyword_table.align = "l"
         print(keyword_table)
 
         logic_table = PrettyTable(
-            ["Logic Operators", "Example Query", "Example Return"])
-        logic_table.addrow([])
-
+            ["Logic Operators", "Symbol", "Example Query", "Example Return"])
+        logic_table.add_row(
+            ["greater than", ">", ">>> population > 30000000", "california, texas"])
+        logic_table.add_row(
+            ["less than", "<", "num_counties < 4", "delaware"])
+        logic_table.add_row(
+            ["greater than or equal to", ">=", "num_counties >= 250", "texas"])
+        logic_table.add_row(
+            ["less than or equal to" ,"<=", "population <= 600000", "wyoming"])
+        logic_table.add_row(
+            ["equal to", "==", "region == northeast", "connecticut, maine, etc."])
+        logic_table.add_row(
+            ["not equal to", "!=", "state_bird != hermit thrush", "alabama, arkansas, etc."])
+        logic_table.add_row(
+            ["and", "&&", "capital == montpelier && governor == 'phil scott'", "vermont"])
+        logic_table.align = "l"
         print(logic_table)
 
     def validate_and_parse_input(self, user_input):
