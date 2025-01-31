@@ -38,9 +38,9 @@ class StateQueryEngine:
            self.main()
 
     def display_help_screen(self):
-        print("this will be the help screen")
-
         # explain the format of 'keyword' 'operator' 'value'
+        print("\nThe format of the queries you are able to enter is as follows:")
+        print(">>> [ keyword ] [ logical operator ] [ value ] \n")
 
         keyword_table = PrettyTable(
             ["Keywords", "Example Query", "Example Return"])
