@@ -1,5 +1,3 @@
-
-
 import pyparsing as pp
 from prettytable import PrettyTable
 import json
@@ -100,6 +98,7 @@ class StateQueryEngine:
         state_bird = pp.Literal("state_bird")
         help = pp.Literal("help")
         exit = pp.Literal("exit")
+        info_of = pp.Literal("info_of") # doesn't work yet
 
         numerical_op = pp.oneOf("!= == >= <= > <")
         categorical_op = pp.oneOf("!= ==")
@@ -116,6 +115,7 @@ class StateQueryEngine:
         governor_query = governor + numerical_op + string
         food_query = popular_food + numerical_op + string
         bird_query = state_bird + numerical_op + string
+        info_query = info_of + categorical_op + string # doesn't work yet
 
         # Build parser
         single_query = (
@@ -126,6 +126,7 @@ class StateQueryEngine:
             | governor_query
             | food_query
             | bird_query
+            | info_query # doesn't work yet
             | help
             | exit
         )
@@ -207,12 +208,12 @@ class StateQueryEngine:
             else:
                 filtered_docs = []
 
-            return self.final_answer(filtered_docs)
+            return self.final_answer(filtered_docs, parsed_query)
         except Exception:
             print("Error. Could not retrieve records from the database.\nType 'help' to see how to properly format a query.")
     
 
-    def final_answer(self, records):
+    def final_answer(self, records, queries):
         """
         Processes the data into user-friendly, readable format and prints it to the console
 
@@ -220,17 +221,77 @@ class StateQueryEngine:
         returns:
         """
         # TODO: takes dictionary output and converts it to user-friendly, readable format, then prints that.
-        print(json.dumps(records, indent=4)) # Temporary
+        output = json.loads(json.dumps(records))
+        output = [list(data.values()) for data in output]
+
+        if len(queries) == 1:
+            category = queries[0][0]
+            operator = queries[0][1]
+            value = queries[0][2]
+        elif len(queries) > 1:
+            category = "compound"
+        else:
+            category = None
+        
+        if category == "info_of":
+            context = "info" # need to show all state info once info_of is working
+        elif category == "region":
+            context = "States in the %s region: " % value
+        elif category == "capital":
+            context = "%s is the capital of: " % value
+        elif category == "governor":
+            context = "%s is the Governor of: " % value
+        elif category == "population":
+            if operator == "==":
+                context = f"States with a population of {value:,}: "
+            elif operator == "!=":
+                context = f"States with a population not exactly equal to {value:,}: "
+            else:
+                context = f"States with a population of {'over' if operator in ['>', '>='] else 'less than'} {value:,}: "
+        elif category == "num_counties":
+            if operator == "==":
+                context = f"States with exactly {value} counties: "
+            elif operator == "!=":
+                context = f"States that don't have exactly {value} counties: "
+            else:
+                context = f"States with {'over' if operator in ['>', '>='] else 'less than'} %s counties: " % value
+        elif category == "pop_food":
+            context = "States with %s as their popular food: " % value
+        elif category == "state_bird":
+            context = "States with the %s as their state bird: " % value
+        elif category == "compound":
+            context = "States that satisfy all queries: "
+        else:
+            context = None
+        
+        if context:
+            if category == "population": # special print case for population
+                tmp = []
+                for i in range(len(output)):
+                    tmp.append(output[i][5]) # cant use output[i][3] yet because some firebase entries need to be reoredered
+                print(context + ", ".join(tmp))
+            elif category == "num_counties": # special print case for num_counties
+                tmp = []
+                for i in range(len(output)):
+                    tmp.append(output[i][5]) # cant use output[i][2] yet because some firebase entries need to be reoredered
+                print(context + ", ".join(tmp))
+            elif category == "info_of": # special print case for info_of
+                tmp = []
+                for i in range(len(output)): # same thing, some entries in wrong order
+                    tmp.append(output[i][5])
+                print(context + ", ".join(tmp))
+            else: # standard print
+                tmp = []
+                for i in range(len(output)):
+                    tmp.append(output[i][5])
+                print(context + ", ".join(tmp))
+
 
     def main(self):
-
         self.display_welcome_screen()
-
         exit_program = False
         while not exit_program:
-            user_query = input("> ").strip()
-
-            # process_input = user_query.strip().lower()
+            user_query = input(">>> ").strip()
             self.validate_and_parse_input(user_query)
 
 
