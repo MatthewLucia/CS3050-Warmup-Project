@@ -1,3 +1,11 @@
+"""
+TODO
+- Compound region queries returning blank response
+    - throw error if blank response?
+- Returning blank response when third word in query is misspelled
+
+"""
+
 import pyparsing as pp
 from prettytable import PrettyTable
 import json
@@ -8,20 +16,25 @@ from google.cloud.firestore_v1 import FieldFilter
 
 
 class StateQueryEngine:
+    # noinspection PyMethodMayBeStatic
     def display_welcome_screen(self):
         border = "\n" + "*" * 48 + "\n"
         print(border + "\tWelcome to the State Query Engine" + border)
-        print("You can filter your search by the following: \n")
-        print("\t1. Capital")
-        print("\t2. Population")
-        print("\t3. Region")
-        print("\t4. Governor")
-        print("\t5. Number of Counties")
-        print("\t6. Popular dish")
-        print("\t7. National Bird")
-        print("\nType 'help' to see how to format a query.")
+        print("You can filter your search by using the following keywords: \n")
+        print("\t- Region")
+        print("\t- Capital")
+        print("\t- Governor")
+        print("\t- Population")
+        print("\t- Number of Counties")
+        print("\t- Popular dish")
+        print("\t- State Bird")
+        print("\nType 'help' to see examples of queries.")
+        print("Type 'exit' to quit the program.")
 
-    def program_exit(self):  # REVISIT LATER --> we should show this after user types "exit"
+        print("\nThe format of the queries you are able to enter is as follows:")
+        print(">>> [ keyword ] [ logical operator ] [ value ] \n")
+
+    def program_exit(self):
         print("\nAre you sure you want to exit? (y/n)")
         quit_choice = input(">>> ")
 
@@ -35,11 +48,9 @@ class StateQueryEngine:
         else:
            self.main()
 
+    # noinspection PyMethodMayBeStatic
     def display_help_screen(self):
-        # explain the format of 'keyword' 'operator' 'value'
-        print("\nThe format of the queries you are able to enter is as follows:")
-        print(">>> [ keyword ] [ logical operator ] [ value ] \n")
-
+        ## show keywords, and give example queries
         keyword_table = PrettyTable(
             ["Keywords", "Example Query", "Example Return"])
         keyword_table.add_row(
@@ -61,6 +72,7 @@ class StateQueryEngine:
         keyword_table.align = "l"
         print(keyword_table)
 
+        ## show logic operators, and give example queries
         logic_table = PrettyTable(
             ["Logic Operators", "Symbol", "Example Query", "Example Return"])
         logic_table.add_row(
@@ -80,6 +92,10 @@ class StateQueryEngine:
         logic_table.align = "l"
         print(logic_table)
 
+        # explain the format of 'keyword' 'operator' 'value'
+        print("\nThe format of the queries you are able to enter is as follows:")
+        print(">>> [ keyword ] [ logical operator ] [ value ] \n")
+
     def validate_and_parse_input(self, user_input):
         """
         Validates and parses the user's input into a list of tokens
@@ -98,7 +114,7 @@ class StateQueryEngine:
         state_bird = pp.Literal("state_bird")
         help = pp.Literal("help")
         exit = pp.Literal("exit")
-        info_of = pp.Literal("info_of") # doesn't work yet
+        info_of = pp.Literal("state") # doesn't work yet
 
         numerical_op = pp.oneOf("!= == >= <= > <")
         categorical_op = pp.oneOf("!= ==")
@@ -144,7 +160,7 @@ class StateQueryEngine:
             elif tokens_list[0] == "exit":
                 self.program_exit()
 
-            # Format list into nested list of single queries for compound quereies
+            # Format list into nested list of single queries for compound queries
             result = []
             if len(tokens_list) >= 3:
                 while tokens_list:
@@ -199,7 +215,7 @@ class StateQueryEngine:
                     doc_set[doc.id] = doc.to_dict()
                 doc_sets.append(doc_set)
             
-            # Compute the intersection of the records to satisfy compound quries
+            # Compute the intersection of the records to satisfy compound queries
             if doc_sets:
                 common_doc_ids = set(doc_sets[0].keys())
                 for doc_set in doc_sets[1:]:
@@ -211,8 +227,8 @@ class StateQueryEngine:
             return self.final_answer(filtered_docs, parsed_query)
         except Exception:
             print("Error. Could not retrieve records from the database.\nType 'help' to see how to properly format a query.")
-    
 
+    # noinspection PyMethodMayBeStatic
     def final_answer(self, records, queries):
         """
         Processes the data into user-friendly, readable format and prints it to the console
@@ -230,8 +246,12 @@ class StateQueryEngine:
             value = queries[0][2]
         elif len(queries) > 1:
             category = "compound"
+            operator = None
+            value = None
         else:
             category = None
+            operator = None
+            value = None
         
         if category == "info_of":
             context = "info" # need to show all state info once info_of is working
@@ -263,29 +283,32 @@ class StateQueryEngine:
             context = "States that satisfy all queries: "
         else:
             context = None
-        
+
         if context:
-            if category == "population": # special print case for population
+            if category == "population": # special print case for population, might not work yet
                 tmp = []
                 for i in range(len(output)):
-                    tmp.append(output[i][5]) # cant use output[i][3] yet because some firebase entries need to be reoredered
+                    tmp.append(output[i][5] + " - Population = " + output[i][2])
                 print(context + ", ".join(tmp))
-            elif category == "num_counties": # special print case for num_counties
+            elif category == "num_counties": # special print case for num_counties, might not work yet
                 tmp = []
                 for i in range(len(output)):
-                    tmp.append(output[i][5]) # cant use output[i][2] yet because some firebase entries need to be reoredered
+                    tmp.append(output[i][5] + " - Number of Counties = " + output[i][1])
                 print(context + ", ".join(tmp))
-            elif category == "info_of": # special print case for info_of
-                tmp = []
-                for i in range(len(output)): # same thing, some entries in wrong order
-                    tmp.append(output[i][5])
-                print(context + ", ".join(tmp))
+            elif category == "info_of": # special print case for info_of, might not work yet
+                print("Info of: " + output[0][5])
+                print("\nRegion: " + output[0][0])
+                print("\nCapital: " + output[0][3])
+                print("\nGovernor: " + output[0][4])
+                print("\nPopulation: " + output[0][2])
+                print("\nNumber of Counties: " + output[0][1])
+                print("\nPopular Food: " + output[0][6])
+                print("\nState Bird: " + output[0][7] + "\n")
             else: # standard print
                 tmp = []
                 for i in range(len(output)):
                     tmp.append(output[i][5])
                 print(context + ", ".join(tmp))
-
 
     def main(self):
         self.display_welcome_screen()
@@ -293,7 +316,6 @@ class StateQueryEngine:
         while not exit_program:
             user_query = input(">>> ").strip()
             self.validate_and_parse_input(user_query)
-
 
 if __name__ == "__main__":
     engine = StateQueryEngine()
