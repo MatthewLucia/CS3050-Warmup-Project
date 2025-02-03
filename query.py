@@ -66,17 +66,17 @@ class StateQueryEngine:
         logic_table.add_row(
             ["greater than", ">", ">>> population > 30000000", "california, texas"])
         logic_table.add_row(
-            ["less than", "<", "num_counties < 4", "delaware"])
+            ["less than", "<", ">>> num_counties < 4", "delaware"])
         logic_table.add_row(
-            ["greater than or equal to", ">=", "num_counties >= 250", "texas"])
+            ["greater than or equal to", ">=", ">>> num_counties >= 250", "texas"])
         logic_table.add_row(
-            ["less than or equal to" ,"<=", "population <= 600000", "wyoming"])
+            ["less than or equal to" ,"<=", ">>> population <= 600000", "wyoming"])
         logic_table.add_row(
-            ["equal to", "==", "region == northeast", "connecticut, maine, etc."])
+            ["equal to", "==", ">>> region == northeast", "connecticut, maine, etc."])
         logic_table.add_row(
-            ["not equal to", "!=", "state_bird != hermit thrush", "alabama, arkansas, etc."])
+            ["not equal to", "!=", ">>> state_bird != hermit thrush", "alabama, arkansas, etc."])
         logic_table.add_row(
-            ["and", "&&", "capital == montpelier && governor == 'phil scott'", "vermont"])
+            ["and", "&&", ">>> capital == montpelier && governor == 'phil scott'", "vermont"])
         logic_table.align = "l"
         print(logic_table)
 
