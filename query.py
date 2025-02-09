@@ -21,12 +21,13 @@ class StateQueryEngine:
         border = "\n" + "*" * 48 + "\n"
         print(border + "\tWelcome to the State Query Engine" + border)
         print("You can filter your search by using the following keywords: \n")
+        print("\t- State")
         print("\t- Region")
         print("\t- Capital")
         print("\t- Governor")
         print("\t- Population")
         print("\t- Number of Counties")
-        print("\t- Popular dish")
+        print("\t- Popular Food")
         print("\t- State Bird")
         print("\nType 'help' to see examples of queries.")
         print("Type 'exit' to quit the program.")
@@ -54,9 +55,9 @@ class StateQueryEngine:
         keyword_table = PrettyTable(
             ["Keywords", "Example Query", "Example Return"])
         keyword_table.add_row(
-            ["region", ">>> region == northeast", "connecticut, maine, etc."])
+            ["state", ">>> state == vermont", "region, capital, etc."])
         keyword_table.add_row(
-            ["info_of", ">>> info_of == vermont", "region, capital, etc."])
+            ["region", ">>> region == northeast", "connecticut, maine, etc."])
         keyword_table.add_row(
             ["capital", ">>> capital == montpelier", "vermont"])
         keyword_table.add_row(
@@ -114,7 +115,7 @@ class StateQueryEngine:
         state_bird = pp.Literal("state_bird")
         help = pp.Literal("help")
         exit = pp.Literal("exit")
-        info_of = pp.Literal("state") # doesn't work yet
+        state = pp.Literal("state") # doesn't work yet
 
         numerical_op = pp.oneOf("!= == >= <= > <")
         categorical_op = pp.oneOf("!= ==")
@@ -131,7 +132,7 @@ class StateQueryEngine:
         governor_query = governor + numerical_op + string
         food_query = popular_food + numerical_op + string
         bird_query = state_bird + numerical_op + string
-        info_query = info_of + categorical_op + string # doesn't work yet
+        state_query = state + categorical_op + string
 
         # Build parser
         single_query = (
@@ -142,7 +143,7 @@ class StateQueryEngine:
             | governor_query
             | food_query
             | bird_query
-            | info_query # doesn't work yet
+            | state_query
             | help
             | exit
         )
@@ -229,14 +230,13 @@ class StateQueryEngine:
             print("Error. Could not retrieve records from the database.\nType 'help' to see how to properly format a query.")
 
     # noinspection PyMethodMayBeStatic
-    def final_answer(self, records, queries):
+    def final_answer(self, records, queries): # There is a bug in the database where num_counties is in the wrong place, leading to incorrect prints
         """
         Processes the data into user-friendly, readable format and prints it to the console
 
         params:
         returns:
         """
-        # TODO: takes dictionary output and converts it to user-friendly, readable format, then prints that.
         output = json.loads(json.dumps(records))
         output = [list(data.values()) for data in output]
 
@@ -253,62 +253,82 @@ class StateQueryEngine:
             operator = None
             value = None
         
-        if category == "info_of":
-            context = "info" # need to show all state info once info_of is working
+        if category == "state":
+            context = "info"
         elif category == "region":
-            context = "States in the %s region: " % value
+            context = "States in the %s region: \n" % value
         elif category == "capital":
-            context = "%s is the capital of: " % value
+            context = "%s is the capital of: \n" % value
         elif category == "governor":
-            context = "%s is the Governor of: " % value
+            context = "%s is the Governor of: \n" % value
         elif category == "population":
             if operator == "==":
-                context = f"States with a population of {value:,}: "
+                context = f"States with a population of {value:,}: \n"
             elif operator == "!=":
-                context = f"States with a population not exactly equal to {value:,}: "
+                context = f"States with a population not exactly equal to {value:,}: \n"
             else:
-                context = f"States with a population of {'over' if operator in ['>', '>='] else 'less than'} {value:,}: "
+                context = f"States with a population of {'over' if operator in ['>', '>='] else 'less than'} {value:,}: \n"
         elif category == "num_counties":
             if operator == "==":
-                context = f"States with exactly {value} counties: "
+                context = f"States with exactly {value} counties: \n"
             elif operator == "!=":
-                context = f"States that don't have exactly {value} counties: "
+                context = f"States that don't have exactly {value} counties: \n"
             else:
-                context = f"States with {'over' if operator in ['>', '>='] else 'less than'} %s counties: " % value
+                context = f"States with {'over' if operator in ['>', '>='] else 'less than'} %s counties: \n" % value
         elif category == "pop_food":
-            context = "States with %s as their popular food: " % value
+            context = "States with %s as their popular food: \n" % value
         elif category == "state_bird":
-            context = "States with the %s as their state bird: " % value
+            context = "States with the %s as their state bird: \n" % value
         elif category == "compound":
-            context = "States that satisfy all queries: "
+            context = "States that satisfy all queries: \n"
         else:
             context = None
 
         if context:
-            if category == "population": # special print case for population, might not work yet
+            if category == "population":
                 tmp = []
                 for i in range(len(output)):
-                    tmp.append(output[i][5] + " - Population = " + output[i][2])
-                print(context + ", ".join(tmp))
-            elif category == "num_counties": # special print case for num_counties, might not work yet
+                    response = f"{output[i][5]} = {output[i][2]:,}"
+                    tmp.append(response)
+                print(context + "\n".join(tmp))
+            elif category == "num_counties":
                 tmp = []
                 for i in range(len(output)):
-                    tmp.append(output[i][5] + " - Number of Counties = " + output[i][1])
-                print(context + ", ".join(tmp))
-            elif category == "info_of": # special print case for info_of, might not work yet
-                print("Info of: " + output[0][5])
-                print("\nRegion: " + output[0][0])
-                print("\nCapital: " + output[0][3])
-                print("\nGovernor: " + output[0][4])
-                print("\nPopulation: " + output[0][2])
-                print("\nNumber of Counties: " + output[0][1])
-                print("\nPopular Food: " + output[0][6])
-                print("\nState Bird: " + output[0][7] + "\n")
-            else: # standard print
+                    response = f"{output[i][5]} = {output[i][6]}"
+                    tmp.append(response)
+                print(context + "\n".join(tmp))
+            elif category == "state":
+                print(output)
+                print(f"Info for: {output[0][5]}")
+                print(f"Region: {output[0][4]}")
+                print(f"Capital: {output[0][0]}")
+                print(f"Governor: {output[0][3]}")
+                print(f"Population: {output[0][2]:,}")
+                print(f"Number of Counties: {output[0][6]}")
+                checking = True
+                while checking:
+                    foods = ["Deep Dish Pizza", "Steamed Crabs", "Clam Chowder", "Buckeye Candies", "Cheesesteaks"]
+                    birds = ["Yellowhammer", "Willow Ptarmigan", "Cactus Wren", "California Quail", "Blue Hen Chicken", "Brown Thrasher", "Western Meadowlark", "Northern Cardinal", "Black-capped Chickadee", "Northern Mockingbird", "Mountain Bluebird", "Northern Cardinal", "Rhode Island Red", "Hermit Thrush", "Western Meadowlark"] # 2 Western Meadowlarks and 2 Norther Cardinals?
+                    value = output[0][7]
+                    try:
+                        value2 = output[0][8]
+                        print(f"Popular Food: {value}")
+                        print(f"State Bird: {value2}")
+                        checking = False
+                        break
+                    except IndexError:
+                        pass
+                    if value in foods:
+                        print(f"Popular Food: {value}")
+                        checking = False
+                    elif value in birds:
+                        print(f"State Bird: {value}")
+                        checking = False
+            else:
                 tmp = []
                 for i in range(len(output)):
                     tmp.append(output[i][5])
-                print(context + ", ".join(tmp))
+                print(context + "\n".join(tmp))
 
     def main(self):
         self.display_welcome_screen()
