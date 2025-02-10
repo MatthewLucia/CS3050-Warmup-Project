@@ -64,7 +64,7 @@ The query language supports categorical and numerical filtering, as well as comp
   - Example: `state == 'New York'` or `state == "New York"`
 - Language is case insensitive
   - Example: `state == new york` is the same as `state == New York` is the same as `state == NEW YORK`
-- Language features simple commands `help`: to display a help menu on how to structure queries, and `exit`: to exit the program
+- Language features additional commands `help` to display a help menu on how to structure queries, and `exit` to exit the program
 
 
 
