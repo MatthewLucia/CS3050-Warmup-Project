@@ -103,3 +103,10 @@ pip install -r requirements.txt
 python query.py
 ```
 
+### Testing
+The file `tests.py` contain unit tests to test the overall functionality of the program, including each individual function. 
+For setting up and running these tests, follow steps 1-5 in the [Setup / Running the Program](#setup--running-the-program) section above.
+The command to run the tests is:
+```bash
+python tests.py
+```
