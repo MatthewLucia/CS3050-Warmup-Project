@@ -1,5 +1,5 @@
 # State Query Engine
-## CS3050
+## CS3050 - Software Engineering
 #### Authors: Sasha J. Abuin, Matt Lucia, Alexa Witkin, Owen Milke
 
 ## Overview
@@ -50,7 +50,7 @@ The query language supports categorical and numerical filtering, as well as comp
 - `population`
 - `num_counties`
   
-(See more about the fields by clicking [here](#our-data))
+([Click here](#our-data) for more information about the fields)
 
 #### Queries and Operators
 | Query Type  | Description | Supported Operators   | Example               | Meaning                                                  |
