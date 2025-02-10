@@ -31,14 +31,14 @@ This section describes the main program `query.py`. This file consists of all co
 parsing the query, retrieving data from the database, and returning results to the user. It also contains additional
 utilities such as providing help to the user.
 
-#### Query Language
+### Query Language
 
 This program uses a domain-specific, declarative query language desgined to filter data on U.S. states. It allows users to contruct queries using relational and logical operators to refine search results.
 
-##### Syntax
+#### Syntax
 The query language supports categorical and numerical filtering, as well as compound queries.
 
-##### Fields 
+#### Fields 
 **Categorical fields** (string-based):
 - `state`
 - `capital`
@@ -52,14 +52,14 @@ The query language supports categorical and numerical filtering, as well as comp
   
 (See more about the fields by clicking [here](#our-data))
 
-##### Queries and Operators
+#### Queries and Operators
 | Query Type  | Description | Supported Operators   | Example               | Meaning                                                  |
 | ----------- | - | --------------------- | --------------------- | -------------------------------------------------------- |
 | Categorical | Simple query that filters by categorical field | ==, !=                | `region == Northeast`   | "All states in the northeast region"                     |
 | Numerical   | Simple query that filters by numerical field | ==, !=, <, >, <=, >=  | `population > 10000000` | "All states with a population greater than 10 million"   |
 | Compound    | Query that combines multiple simple queries | &&                    | `region == Northeast && population > 10000000` | "All states in the northeast region and with a population greater than 10 million" |
 
-##### Other Language Specifics
+#### Other Language Specifics
 - String-based terms with whitespace characters must be enclosed in either a single or double quote
   - Example: `state == New York` or `state == "New York"`
 - Language is case insensitive
@@ -68,7 +68,7 @@ The query language supports categorical and numerical filtering, as well as comp
 
 
 
-#### Functions
+### Functions
 
 - `display_welcome_screen`: Displays a welcome screen to the user with a quick introduction on how to use the program.  
 - `display_help_screen`: Displays in-depth instructions on how to structure queries upon user's request
