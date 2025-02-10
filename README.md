@@ -38,7 +38,7 @@ This program uses a domain-specific, declarative query language desgined to filt
 ##### Syntax
 The query language supports categorical and numerical filtering, as well as compound queries.
 
-###### Fields 
+##### Fields 
 **Categorical fields** (string-based):
 - `state`
 - `capital`
@@ -52,14 +52,14 @@ The query language supports categorical and numerical filtering, as well as comp
   
 (See more about the fields by clicking [here](#our-data))
 
-###### Queries and Operators
+##### Queries and Operators
 | Query Type  | Description | Supported Operators   | Example               | Meaning                                                  |
 | ----------- | - | --------------------- | --------------------- | -------------------------------------------------------- |
 | Categorical | Simple query that filters by categorical field | ==, !=                | `region == Northeast`   | "All states in the northeast region"                     |
 | Numerical   | Simple query that filters by numerical field | ==, !=, <, >, <=, >=  | `population > 10000000` | "All states with a population greater than 10 million"   |
 | Compound    | Query that combines multiple simple queries | &&                    | `region == Northeast && population > 10000000` | "All states in the northeast region and with a population greater than 10 million" |
 
-###### Other Language Specifics
+##### Other Language Specifics
 - String-based terms with whitespace characters must be enclosed in either a single or double quote
   - Example: `state == New York` or `state == "New York"`
 - Language is case insensitive
