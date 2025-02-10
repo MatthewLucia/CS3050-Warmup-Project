@@ -23,7 +23,7 @@ Our data contains the following fields:
 - `governor`: The name of the current governor of the state
 - `population`: The current population of the state
 - `num_counties`: The number of counties in the state
-- `national_bird`: (optional) The official bird for the state
+- `state_bird`: (optional) The official bird for the state
 - `popular_food`: (optional) A popular dish for the state
 
 ## Program Description
@@ -33,13 +33,38 @@ utilities such as providing help to the user.
 
 #### Query Language
 
-This program uses a domain-specific, declarative query language to filter data on U.S. states. The syntax uses logical operators to filter data from specified fields.
-The language features both categorical and numeric operations.
+This program uses a domain-specific, declarative query language desgined to filter data on U.S. states. It allows users to contruct queries using relational and logical operators to refine search results.
 
-Language specifics:
-- Categorical operators must be joined by a '==' or '!=' operator
-- Example: `region == Northeast`
-- 
+##### Syntax
+The query language supports categorical and numerical filtering, as well as compound queries.
+
+###### Fields 
+**Categorical fields** (string-based):
+- `state`
+- `capital`
+- `governor`
+- `state_bird`
+- `popular_food`
+
+**Numerical fields** (integer-based):
+- `population`
+- `num_counties`
+  
+(See more about the fields by clicking [here](#our-data))
+
+###### Queries and Operators
+| Query Type  | Description | Supported Operators   | Example               | Meaning                                                  |
+| ----------- | - | --------------------- | --------------------- | -------------------------------------------------------- |
+| Categorical | Simple query that filters by categorical field | ==, !=                | `region == Northeast`   | "All states in the northeast region"                     |
+| Numerical   | Simple query that filters by numerical field | ==, !=, <, >, <=, >=  | `population > 10000000` | "All states with a population greater than 10 million"   |
+| Compound    | Query that combines multiple simple queries | &&                    | `region == Northeast && population > 10000000` | "All states in the northeast region and with a population greater than 10 million" |
+
+###### Other Language Specifics
+- String-based terms with whitespace characters must be enclosed in either a single or double quote
+  - Example: `state == New York` or `state == "New York"`
+- Language is case insensitive
+  - Example: `state == new york` is the same as `state == New York` is the same as `state == NEW YORK`
+- Language features simple commands `help`: to display a help menu on how to structure queries, and `exit`: to exit the program
 
 
 
