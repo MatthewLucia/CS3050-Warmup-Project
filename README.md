@@ -33,9 +33,25 @@ utilities such as providing help to the user.
 
 #### Query Language
 
+This program uses a domain-specific, declarative query language to filter data on U.S. states. The syntax uses logical operators to filter data from specified fields.
+The language features both categorical and numeric operations.
+
+Language specifics:
+- Categorical operators must be joined by a '==' or '!=' operator
+- Example: `region == Northeast`
+- 
+
+
+
 #### Functions
 
-`display_welcome_screen`
+- `display_welcome_screen`: Displays a welcome screen to the user with a quick introduction on how to use the program.  
+- `display_help_screen`: Displays in-depth instructions on how to structure queries upon user's request
+- `program_exit`: Function for exiting the program, confirms with the user prior to exiting
+- `validate_and_parse_input`: Parser function that defines all possible queries and commands the user can make,
+parses the input, and sends an error message if the user enters a query or command the parser cannot interpret. The parsed input is then formatted and sent to the `query_database` function
+- `query_database`: Takes a parsed input and retrieves matching records from the Firestore database and sends the records to the `final_answer` function
+- `final_answer`: Processes the data into user-friendly, readable format, and prints the result to the user
 
 
 ## Setup / Running the Program

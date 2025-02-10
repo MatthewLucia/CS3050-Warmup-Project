@@ -67,7 +67,7 @@ class StateQueryEngine:
         keyword_table.add_row(
             ["num_counties", ">>> num_counties > 150", "texas, georgia"])
         keyword_table.add_row(
-            ["popular_food", ">>> popular_food == 'boiled peanuts'", "alabama"])
+            ["popular_food", ">>> popular_food == 'clam chowder'", "massachusetts"])
         keyword_table.add_row(
             ["state_bird", ">>> state_bird == 'hermit thrush'", "vermont"])
         keyword_table.align = "l"
@@ -156,10 +156,12 @@ class StateQueryEngine:
             # Display help screen on event user types 'help'
             if tokens_list[0] == "help":
                 self.display_help_screen()
-            
+                return
+
             # Prompt exit on event user types 'exit'
             elif tokens_list[0] == "exit":
                 self.program_exit()
+                return
 
             # Format list into nested list of single queries for compound queries
             result = []
@@ -203,7 +205,7 @@ class StateQueryEngine:
                 # Capitalize proper nouns
                 elif isinstance(subquery[2], str):
                     subquery[2] = subquery[2].title()
-                
+
                 # Retrieve documents from the database
                 docs = (
                     db.collection("us_states_data")
@@ -215,7 +217,7 @@ class StateQueryEngine:
                 for doc in docs:
                     doc_set[doc.id] = doc.to_dict()
                 doc_sets.append(doc_set)
-            
+
             # Compute the intersection of the records to satisfy compound queries
             if doc_sets:
                 common_doc_ids = set(doc_sets[0].keys())
@@ -225,7 +227,10 @@ class StateQueryEngine:
             else:
                 filtered_docs = []
 
-            return self.final_answer(filtered_docs, parsed_query)
+            if filtered_docs == []:
+                print("Error reading input. Did you misspell something?")
+            else:
+                return self.final_answer(filtered_docs, parsed_query)
         except Exception:
             print("Error. Could not retrieve records from the database.\nType 'help' to see how to properly format a query.")
 
@@ -252,7 +257,7 @@ class StateQueryEngine:
             category = None
             operator = None
             value = None
-        
+
         if category == "state":
             context = "info"
         elif category == "region":
@@ -275,7 +280,7 @@ class StateQueryEngine:
                 context = f"States that don't have exactly {value} counties: \n"
             else:
                 context = f"States with {'over' if operator in ['>', '>='] else 'less than'} %s counties: \n" % value
-        elif category == "pop_food":
+        elif category == "popular_food":
             context = "States with %s as their popular food: \n" % value
         elif category == "state_bird":
             context = "States with the %s as their state bird: \n" % value
@@ -298,7 +303,6 @@ class StateQueryEngine:
                     tmp.append(response)
                 print(context + "\n".join(tmp))
             elif category == "state":
-                print(output)
                 print(f"Info for: {output[0][5]}")
                 print(f"Region: {output[0][4]}")
                 print(f"Capital: {output[0][0]}")
@@ -307,14 +311,16 @@ class StateQueryEngine:
                 print(f"Number of Counties: {output[0][6]}")
                 checking = True
                 while checking:
-                    foods = ["Deep Dish Pizza", "Steamed Crabs", "Clam Chowder", "Buckeye Candies", "Cheesesteaks"]
-                    birds = ["Yellowhammer", "Willow Ptarmigan", "Cactus Wren", "California Quail", "Blue Hen Chicken", "Brown Thrasher", "Western Meadowlark", "Northern Cardinal", "Black-capped Chickadee", "Northern Mockingbird", "Mountain Bluebird", "Northern Cardinal", "Rhode Island Red", "Hermit Thrush", "Western Meadowlark"] # 2 Western Meadowlarks and 2 Norther Cardinals?
-                    value = output[0][7]
+                    foods = ["Clam Chowder", "Buckeye Candies"]
+                    birds = ["Yellowhammer", "Willow Ptarmigan", "Cactus Wren", "California Quail", "Blue Hen Chicken", "Brown Thrasher", "Western Meadowlark", "Northern Cardinal", "Black-capped Chickadee", "Northern Mockingbird", "Mountain Bluebird", "Rhode Island Red", "Hermit Thrush"]
+                    try:
+                        value = output[0][7]
+                    except IndexError:
+                        pass
                     try:
                         value2 = output[0][8]
                         print(f"Popular Food: {value}")
                         print(f"State Bird: {value2}")
-                        checking = False
                         break
                     except IndexError:
                         pass
@@ -324,6 +330,8 @@ class StateQueryEngine:
                     elif value in birds:
                         print(f"State Bird: {value}")
                         checking = False
+                    else:
+                        break
             else:
                 tmp = []
                 for i in range(len(output)):
