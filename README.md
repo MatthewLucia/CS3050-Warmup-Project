@@ -61,7 +61,7 @@ The query language supports categorical and numerical filtering, as well as comp
 
 #### Other Language Specifics
 - String-based terms with whitespace characters must be enclosed in either a single or double quote
-  - Example: `state == New York` or `state == "New York"`
+  - Example: `state == 'New York'` or `state == "New York"`
 - Language is case insensitive
   - Example: `state == new york` is the same as `state == New York` is the same as `state == NEW YORK`
 - Language features simple commands `help`: to display a help menu on how to structure queries, and `exit`: to exit the program
