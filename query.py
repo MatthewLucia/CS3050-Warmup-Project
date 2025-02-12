@@ -1,11 +1,3 @@
-"""
-TODO
-- Compound region queries returning blank response
-    - throw error if blank response?
-- Returning blank response when third word in query is misspelled
-
-"""
-
 import pyparsing as pp
 from prettytable import PrettyTable
 import json
@@ -184,7 +176,8 @@ class StateQueryEngine:
         associated with the input
 
         params: parsed_query - the parsed user's query
-        returns:
+        returns: filtered_docs - a dictionary of documents matching the user's query passed to the final_answer function
+                 parsed_query - the parsed user's query passed to the final_answer function
         """
         # Log in to the firebase system
         if not firebase_admin._apps:
@@ -235,16 +228,19 @@ class StateQueryEngine:
             print("Error. Could not retrieve records from the database.\nType 'help' to see how to properly format a query.")
 
     # noinspection PyMethodMayBeStatic
-    def final_answer(self, records, queries): # There is a bug in the database where num_counties is in the wrong place, leading to incorrect prints
+    def final_answer(self, records, queries):
         """
         Processes the data into user-friendly, readable format and prints it to the console
 
-        params:
-        returns:
+        params: records - a dictionary of documents matching the user's query
+                queries - a formatted list of the user's query
+        returns: void
         """
+        # Gets the output from a user's query and formats it into a list
         output = json.loads(json.dumps(records))
         output = [list(data.values()) for data in output]
 
+        # Checks the length of the query list and assigns relevant category, operator, and value
         if len(queries) == 1:
             category = queries[0][0]
             operator = queries[0][1]
@@ -258,6 +254,7 @@ class StateQueryEngine:
             operator = None
             value = None
 
+        # Adds context for the print statement depending on what category of query the user asked
         if category == "state":
             context = "info"
         elif category == "region":
@@ -289,6 +286,8 @@ class StateQueryEngine:
         else:
             context = None
 
+        # Formats queried data into digestible output to be printed
+        # Checks for special print conditions for select categories that require different output
         if context:
             if category == "population":
                 tmp = []
@@ -309,6 +308,7 @@ class StateQueryEngine:
                 print(f"Governor: {output[0][3]}")
                 print(f"Population: {output[0][2]:,}")
                 print(f"Number of Counties: {output[0][6]}")
+                # Check to see if a state has the optional state_bird or popular_food fields
                 checking = True
                 while checking:
                     foods = ["Clam Chowder", "Buckeye Candies"]
@@ -332,7 +332,7 @@ class StateQueryEngine:
                         checking = False
                     else:
                         break
-            else:
+            else: # Default output statement
                 tmp = []
                 for i in range(len(output)):
                     tmp.append(output[i][5])
