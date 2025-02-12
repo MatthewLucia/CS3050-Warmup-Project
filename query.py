@@ -295,12 +295,14 @@ class StateQueryEngine:
                     response = f"{output[i][5]} = {output[i][2]:,}"
                     tmp.append(response)
                 print(context + "\n".join(tmp))
+                print("\n")
             elif category == "num_counties":
                 tmp = []
                 for i in range(len(output)):
                     response = f"{output[i][5]} = {output[i][6]}"
                     tmp.append(response)
                 print(context + "\n".join(tmp))
+                print("\n")
             elif category == "state":
                 print(f"Info for: {output[0][5]}")
                 print(f"Region: {output[0][4]}")
@@ -332,11 +334,13 @@ class StateQueryEngine:
                         checking = False
                     else:
                         break
+                print("\n")
             else: # Default output statement
                 tmp = []
                 for i in range(len(output)):
                     tmp.append(output[i][5])
                 print(context + "\n".join(tmp))
+                print("\n")
 
     def main(self):
         self.display_welcome_screen()
