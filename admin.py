@@ -5,7 +5,7 @@ from firebase_admin import firestore
 import json
 
 # Login to Firebase
-cred = credentials.Certificate('cs3050-warmup-7457f-firebase-adminsdk-fbsvc-998bc9893a.json.json')
+cred = credentials.Certificate('cs3050-warmup-7457f-firebase-adminsdk-fbsvc-998bc9893a.json')
 firebase_admin.initialize_app(cred)
 
 # Connect to Firestore DB
